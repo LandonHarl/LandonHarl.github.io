@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--This is the home page for my personal project with links to the other pages-->
+<head>
+<title>Personal Project</title>
+<style>
+	nav li {
+	list style: none; 
+	padding-right: 20px; 
+	display: inline;
+	color: black;
+	}
+	nav a:hover {
+	border-bottom: 3px solid black;
+	}
+	a:link {
+	color: black;
+	}
+	a:visited {
+	color: white;
+	border-bottom: 3px solid white;
+	}
+	nav {
+	background-image: linear-gradient(to right, #000033, rgb(140, 140, 140));; 
+	padding: 12px; 
+	text-align: center;
+	}
+	h1 {
+	text-align: center;
+	text-transform: capitalize;
+	color: #000000;
+	}
+	body {
+	background-image: linear-gradient(to right, #737373, rgb(0, 0, 51));
+	}
+	p {
+	text-align: center;
+	}
+	#ProjectsOne {
+	float: left;
+	width: 50%;
+	padding: 10px
+	height: 420px;
+	}
+	#ProjectsTwo {
+	float: left;
+	width: 40%;
+	padding: 15px
+	height: 420px;
+	}
+</style>
+</head>
+<nav>
+<ul>
+	<li><a href="Index.html">Home</a></li>
+	<li><a href="Resume.html">Resume</a></li>
+	<li><a href="Hobby.html">Hobby Page</a></li>
+	<li><a href="Projects.html">Projects</a></li>
+	<li><a href="contactinfo.html">Contact Information</a></li>
+</ul>
+</nav>
+<body>
+<div id="Projects">
+<section id="ProjectsOne">
+<h1>Python Project</h1>
+<p>This is one of my python projects:</p>
+<pre># This program calculates the money collected from a fundraiser
+# and writes it to a file
+# Landon Harl
+# 10/13/22
+
+def main():
+    cTotal = 0
+    playAgain = "yes"
+    fundraiser = init()
+    while (playAgain == "yes"):
+        iName = getName()
+        iId = studentID()
+        iFunds = FRAmt()
+        iMajor = Major()
+        cTotal = calcs(iFunds, cTotal)
+        playAgain = input("Would you like to enter more? (yes/no) ")
+    output(iName, iId, iFunds, iMajor, fundraiser, cTotal)
+    closing(fundraiser)
+
+def calcs(iFunds, cTotal):
+    cTotal = cTotal + iFunds
+    return cTotal
+
+def init():
+    try:
+        fundraiser = open(r'c:\Python\fundraiser.dat', 'w')
+    except:
+        print("File Error. Program Terminated.")
+        exit(0)
+    return fundraiser
+
+
+def getName():
+    valid = False
+    while valid == False:
+        iName = (input("Enter name: "))
+        if iName.strip() != "" and iName.isalpha():
+            valid = True
+        else:
+            print("Error. Name is required")
+    return iName
+
+def studentID():
+    valid = False
+    while valid == False:
+        try:
+            iId = int(input("Enter student ID: "))
+            valid = True
+        except:
+            print("Error. Invalid ID. Must be numeric.")
+    return iId
+
+def FRAmt():
+    valid = False
+    while valid == False:
+        try:
+            iFunds = float(input("Enter funds raised: "))
+            valid = True
+        except:
+            print("Error. Invalid amount. Must be a numeric value with decimals.")
+    return iFunds
+
+def Major():
+    valid = False
+    while valid == False:
+        try:
+            iMaj = int(input("What is your major? (1-Software, 2-Cyber-Security, 3-Interactive Media)"))
+            if iMaj == 1:
+                iMajor = "Software"
+            elif iMaj == 2:
+                iMajor = "CyberSecurity"
+            elif iMaj ==3:
+                iMajor = "Interactive Media"
+            if iMaj > 3:
+                valid = False
+            if iMaj < 1:
+                valid = False
+            else:
+                valid = True
+        except:
+            print("Error. Enter a 1, 2 or 3.")
+    return iMajor
+
+def output(iName, iId, iFunds, iMajor, fundraiser, cTotal):
+    print("Funds raised: $", format(cTotal, ',.2f'))
+    fundraiser.write(format(iName, '25s') + "\n" + format(iId, '6d') + "\n" + "$" + format(iFunds, '7.2f') + "\n" + format(iMajor, '20s'))
+
+def closing(fundraiser):
+    fundraiser.close()
+
+main()
+</pre>
+</section>
+<aside id="ProjectsTwo">
+<h1>Website Project</h1>
+<p>This is my website project. We added to this throughout the entire course:</p>
+<img src="WebsiteSnip.png" width="650">
+</div>
+</body>
+</html>
